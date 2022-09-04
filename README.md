@@ -5,3 +5,4 @@ Projects for Georgia Tech's Data Structures and Algorithms Course
 - ArrayList
 - Singly-Linked List
 - Array-Backed Queue
+- Binary Search Tree Traversals
