@@ -27,6 +27,20 @@ public class Traversals<T extends Comparable<? super T>> {
      */
     public List<T> preorder(TreeNode<T> root) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        List<T> data = new ArrayList<>();
+        preorderHelper(data, root);
+        return data;
+    }
+
+    private void preorderHelper(List<T> data, TreeNode<T> node){
+        if (node == null){
+            return;
+        }
+        else {
+            data.add(node.getData());
+            preorderHelper(data, node.getLeft());
+            preorderHelper(data, node.getRight());
+        }
     }
 
     /**
@@ -44,6 +58,20 @@ public class Traversals<T extends Comparable<? super T>> {
      */
     public List<T> inorder(TreeNode<T> root) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        List<T> data = new ArrayList<>();
+        inorderHelper(data, root);
+        return data;
+    }
+
+    private void inorderHelper(List<T> data, TreeNode<T> node){
+        if (node == null){
+            return;
+        }
+        else {
+            inorderHelper(data, node.getLeft());
+            data.add(node.getData());
+            inorderHelper(data, node.getRight());
+        }
     }
 
     /**
@@ -61,5 +89,19 @@ public class Traversals<T extends Comparable<? super T>> {
      */
     public List<T> postorder(TreeNode<T> root) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        List<T> data = new ArrayList<>();
+        postorderHelper(data, root);
+        return data;
+    }
+
+    private void postorderHelper(List<T> data, TreeNode<T> node){
+        if (node == null){
+            return;
+        }
+        else {
+            postorderHelper(data, node.getLeft());
+            postorderHelper(data, node.getRight());
+            data.add(node.getData());
+        }
     }
 }
