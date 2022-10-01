@@ -40,6 +40,10 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public void add(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        if (data == null)
+            throw new IllegalArgumentException();
+
         // Increase size if needed
         if (size == backingArray.length - 1){
             T[] newArr = (T[]) new Comparable[backingArray.length * 2];
@@ -83,6 +87,10 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public T remove() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        if (size == 0)
+            throw new NoSuchElementException();
+
+
         T returnVal = backingArray[1];
         backingArray[1] = backingArray[size];
         backingArray[size] = null;
