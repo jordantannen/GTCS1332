@@ -94,9 +94,6 @@ public class MinHeap<T extends Comparable<? super T>> {
         int left = 2 * index;
         int right = 2 * index + 1;
 
-        System.out.println("Index: " + index);
-        System.out.println("BA Val: " + backingArray[index]);
-
         if (backingArray[left] == null || (backingArray[index].compareTo(backingArray[left]) < 0 &&
                 (backingArray[right] == null || backingArray[index].compareTo(backingArray[right]) < 0))){
             size--;
@@ -107,11 +104,9 @@ public class MinHeap<T extends Comparable<? super T>> {
                 T temp = backingArray[left];
                 backingArray[left] = backingArray[index];
                 backingArray[index] = temp;
-                System.out.println("LH");
                 removeHelper(left);
             }
             else {
-                System.out.println("RH");
                 T temp = backingArray[right];
                 backingArray[right] = backingArray[index];
                 backingArray[index] = temp;
