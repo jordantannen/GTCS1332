@@ -94,6 +94,7 @@ public class MinHeap<T extends Comparable<? super T>> {
         T returnVal = backingArray[1];
         backingArray[1] = backingArray[size];
         backingArray[size] = null;
+        size--;
         removeHelper(1);
         return returnVal;
     }
@@ -101,26 +102,23 @@ public class MinHeap<T extends Comparable<? super T>> {
     private void removeHelper(int index){
         int left = 2 * index;
         int right = 2 * index + 1;
+        int minVal = index;
 
-        if (backingArray[left] == null || (backingArray[index].compareTo(backingArray[left]) < 0 &&
-                (backingArray[right] == null || backingArray[index].compareTo(backingArray[right]) < 0))){
-            size--;
-            return;
+        if (left <= size && backingArray[left].compareTo(backingArray[minVal]) < 0) {
+            minVal = left;
         }
-        else {
-            if (backingArray[left].compareTo(backingArray[right]) < 0){
-                T temp = backingArray[left];
-                backingArray[left] = backingArray[index];
-                backingArray[index] = temp;
-                removeHelper(left);
-            }
-            else {
-                T temp = backingArray[right];
-                backingArray[right] = backingArray[index];
-                backingArray[index] = temp;
-                removeHelper(right);
-            }
+        if (right <= size && backingArray[right].compareTo(backingArray[minVal]) < 0) {
+            minVal = right;
         }
+
+        if (minVal != index) {
+            T parent = backingArray[index];
+            T child = backingArray[minVal];
+            backingArray[index] = child;
+            backingArray[minVal] = parent;
+            removeHelper(minVal);
+        }
+
     }
 
     /**

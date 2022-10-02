@@ -22,5 +22,10 @@ public class Main {
 
         System.out.println(Arrays.toString(testHeap.getBackingArray()));
         System.out.println("Size: " + testHeap.size());
+        System.out.println();
+
+        testHeap.add(3);
+        System.out.println(Arrays.toString(testHeap.getBackingArray()));
+        System.out.println("Size: " + testHeap.size());
     }
 }
