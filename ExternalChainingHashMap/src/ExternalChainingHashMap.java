@@ -71,6 +71,36 @@ public class ExternalChainingHashMap<K, V> {
      */
     public V put(K key, V value) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        // Ensure data is valid
+        if (key == null || value == null)
+            throw new IllegalArgumentException();
+
+        // Ensure load factor hasn't been reached, resizes table if it has
+        if ((double) (size + 1) / table.length > MAX_LOAD_FACTOR){
+            resizeBackingTable(table.length * 2 + 1);
+        }
+
+        // Creates index
+        int index = Math.abs(key.hashCode() % table.length);
+
+        if (table[index] == null){
+            table[index] = new ExternalChainingMapEntry<>(key, value);
+        }
+        else {
+            ExternalChainingMapEntry<K, V> currentEntry = table[index];
+            while (currentEntry.getNext() != null && !currentEntry.getKey().equals(key)){
+                currentEntry = currentEntry.getNext();
+            }
+            if (currentEntry.getKey().equals(key)){
+                V previousValue = currentEntry.getValue();
+                currentEntry.setValue(value);
+                return previousValue;
+            }
+            table[index] = new ExternalChainingMapEntry<>(key, value, table[index]);
+        }
+        size++;
+        return null;
     }
 
     /**
@@ -83,6 +113,35 @@ public class ExternalChainingHashMap<K, V> {
      */
     public V remove(K key) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        if (key == null)
+            throw new IllegalArgumentException();
+
+        int index = Math.abs(key.hashCode() % table.length);
+        V returnVal = null;
+
+        if (table[index] == null) {
+            throw new NoSuchElementException();
+        }
+        else if (table[index].getKey().equals(key)) {
+            returnVal = table[index].getValue();
+            table[index] = table[index].getNext();
+            size--;
+            return returnVal;
+        }
+        else {
+            ExternalChainingMapEntry<K, V> currentEntry = table[index];
+            while (currentEntry.getNext() != null && !currentEntry.getNext().getKey().equals(key)){
+                currentEntry = currentEntry.getNext();
+
+            }
+            if (currentEntry.getNext() != null && currentEntry.getNext().getKey().equals(key)){
+                returnVal = currentEntry.getNext().getValue();
+                currentEntry.setNext(currentEntry.getNext().getNext());
+                size--;
+                return returnVal;
+            }
+        }
+        throw new NoSuchElementException();
     }
 
     /**
