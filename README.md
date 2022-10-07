@@ -6,3 +6,6 @@ Projects for Georgia Tech's Data Structures and Algorithms Course
 - Singly-Linked List
 - Array-Backed Queue
 - Binary Search Tree Traversals
+- Binary Search Tree
+- Min Heap
+- External Chaining HashMap
