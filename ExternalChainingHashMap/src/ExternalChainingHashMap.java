@@ -144,6 +144,20 @@ public class ExternalChainingHashMap<K, V> {
         throw new NoSuchElementException();
     }
 
+    public boolean containsKey(K key) {
+        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        int index = Math.abs(key.hashCode() % table.length);
+
+        ExternalChainingMapEntry<K, V> traversalNode = table[index];
+
+        while (traversalNode != null){
+            if (traversalNode.getKey().equals(key))
+                return true;
+            traversalNode = traversalNode.getNext();
+        }
+
+        return false;
+    }
     /**
      * Helper method stub for resizing the backing table to length.
      *
