@@ -13,6 +13,29 @@ public class BST<T extends Comparable<? super T>> {
     private BSTNode<T> root;
     private int size;
 
+    public boolean contains(T data) {
+        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        return containsHelper(data, root);
+
+    }
+
+    private boolean containsHelper(T data, BSTNode<T> node){
+        boolean doesContain = false;
+
+        // Base cases
+        if (node == null)
+            return false;
+
+        if (node.getData().equals(data))
+            return true;
+
+        if (data.compareTo(node.getData()) < 0)
+            doesContain = containsHelper(data, node.getLeft());
+        else if (data.compareTo(node.getData()) > 0)
+            doesContain = containsHelper(data, node.getRight());
+
+        return doesContain;
+    }
     /*
      * Do not add a constructor.
      */
