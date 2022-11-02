@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /**
  * Your implementation of the AVL tree rotations.
  */
@@ -233,7 +235,61 @@ public class AVL<T extends Comparable<? super T>> {
      */
     public T remove(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        return null;
+
+        if (data == null)
+            throw new IllegalArgumentException("No Data");
+        else if (root == null) {
+            throw new NoSuchElementException("Tree is empty");
+        }
+
+        AVLNode<T> dummy = new AVLNode<>(null);
+        root = removeHelper(root, data, dummy);
+        return dummy.getData();
+    }
+
+    private AVLNode<T> removeHelper(AVLNode<T> currentNode, T data, AVLNode<T> dummy){
+
+        if (currentNode == null)
+            throw new NoSuchElementException("Target element not in tree");
+        else if (data.compareTo(currentNode.getData()) < 0) {
+            currentNode.setLeft(removeHelper(currentNode.getLeft(), data, dummy));
+        }
+        else if (data.compareTo(currentNode.getData()) > 0) {
+            currentNode.setRight(removeHelper(currentNode.getRight(), data, dummy));
+        }
+        else {
+            dummy.setData(currentNode.getData());
+            size--;
+
+            if (currentNode.getRight() == null && currentNode.getLeft() == null){
+                return null;
+            }
+            else if (currentNode.getLeft() != null && currentNode.getRight() == null) {
+                return currentNode.getLeft();
+            }
+            else if (currentNode.getRight() != null && currentNode.getLeft() == null) {
+                return currentNode.getRight();
+            }
+            else {
+                AVLNode<T> dummyTwo = new AVLNode<>(null);
+                currentNode.setRight(removeSuccessor(currentNode.getRight(), dummyTwo));
+                currentNode.setData(dummyTwo.getData());
+            }
+        }
+        currentNode = balance(currentNode);
+        return currentNode;
+    }
+
+    private AVLNode<T> removeSuccessor(AVLNode<T> currentNode, AVLNode<T> dummy){
+        if (currentNode.getLeft() == null){
+            dummy.setData(currentNode.getData());
+            return currentNode.getRight();
+        }
+        else {
+            currentNode.setLeft(removeSuccessor(currentNode.getLeft(), dummy));
+        }
+        currentNode = balance(currentNode);
+        return currentNode;
     }
 
     /**
