@@ -30,7 +30,7 @@ public class Sorting {
         int stopIndex = arr.length - 1;
         while (stopIndex != 0){
             int i = 0;
-            int lastSwapped = stopIndex;
+            int lastSwapped = 0;
             while (i < stopIndex){
                 if (comparator.compare(arr[i], arr[i + 1]) > 0){
                     T placeHolder = arr[i];
@@ -97,7 +97,7 @@ public class Sorting {
      */
     public static <T> void insertionSort(T[] arr, Comparator<T> comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        for (int i = 1; i < arr.length - 1; i++){
+        for (int i = 1; i < arr.length; i++){
             int innerLoopIndex = i;
             while (innerLoopIndex != 0 && comparator.compare(arr[innerLoopIndex], arr[innerLoopIndex - 1]) < 0){
                 T placeholder = arr[innerLoopIndex];
