@@ -27,6 +27,21 @@ public class Sorting {
      */
     public static <T> void bubbleSort(T[] arr, Comparator<T> comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        int stopIndex = arr.length - 1;
+        while (stopIndex != 0){
+            int i = 0;
+            int lastSwapped = stopIndex;
+            while (i < stopIndex){
+                if (comparator.compare(arr[i], arr[i + 1]) > 0){
+                    T placeHolder = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = placeHolder;
+                    lastSwapped = i;
+                }
+                i++;
+            }
+            stopIndex = lastSwapped;
+        }
     }
 
     /**
