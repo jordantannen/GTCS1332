@@ -64,6 +64,7 @@ public class Sorting {
      */
     public static <T> void selectionSort(T[] arr, Comparator<T> comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
     }
 
     /**
@@ -86,5 +87,14 @@ public class Sorting {
      */
     public static <T> void insertionSort(T[] arr, Comparator<T> comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        for (int i = 1; i < arr.length - 1; i++){
+            int innerLoopIndex = i;
+            while (innerLoopIndex != 0 && comparator.compare(arr[innerLoopIndex], arr[innerLoopIndex - 1]) < 0){
+                T placeholder = arr[innerLoopIndex];
+                arr[innerLoopIndex] = arr[innerLoopIndex - 1];
+                arr[innerLoopIndex - 1] = placeholder;
+                innerLoopIndex--;
+            }
+        }
     }
 }
