@@ -126,7 +126,11 @@ public class Sorting {
         int k = 0;
 
         for (int j : arr) {
-            if (Math.abs(j) > prevMax) {
+            if (j == -2147483648) {
+                k = 10;
+                prevMax = 2147483647;
+            }
+            else if (Math.abs(j) > Math.abs(prevMax)) {
                 prevMax = j;
                 int numDigits = 0;
                 while (j != 0) {
