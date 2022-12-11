@@ -122,11 +122,18 @@ public class Sorting {
             buckets[i] = new LinkedList<>();
         }
 
+        int prevMax = 0;
         int k = 0;
 
         for (int j : arr) {
-            if (Math.abs(j) > k) {
-                k = j;
+            if (Math.abs(j) > prevMax) {
+                prevMax = j;
+                int numDigits = 0;
+                while (j != 0) {
+                    numDigits++;
+                    j /= 10;
+                }
+                k = numDigits;
             }
         }
 
@@ -135,14 +142,15 @@ public class Sorting {
         for (int i = 0; i < k; i++) {
             for (int value : arr) {
                 int digit = value / mod % 10;
-                buckets[digit + 9].add(arr[i]);
+                buckets[digit + 9].add(value);
             }
             
             int idx = 0;
 
             for (Queue<Integer> bucket : buckets){
                 while (!bucket.isEmpty()){
-                    arr[idx] = bucket.remove();
+                    int removed = bucket.remove();
+                    arr[idx] = removed;
                     idx++;
                 }
             }
