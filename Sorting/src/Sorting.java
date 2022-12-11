@@ -58,7 +58,7 @@ public class Sorting {
         }
     }
 
-    public static <T> void merge(T[] arr, T[] left, T[] right, Comparator<T> comparator) {
+    private static <T> void merge(T[] arr, T[] left, T[] right, Comparator<T> comparator) {
         int i = 0;
         int j = 0;
 
