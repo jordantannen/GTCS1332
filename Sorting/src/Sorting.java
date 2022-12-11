@@ -116,5 +116,38 @@ public class Sorting {
      */
     public static void lsdRadixSort(int[] arr) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        Queue<Integer>[] buckets = new LinkedList[19];
+
+        for (int i = 0; i < buckets.length; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+
+        int k = 0;
+
+        for (int j : arr) {
+            if (Math.abs(j) > k) {
+                k = j;
+            }
+        }
+
+        int mod = 1;
+
+        for (int i = 0; i < k; i++) {
+            for (int value : arr) {
+                int digit = value / mod % 10;
+                buckets[digit + 9].add(arr[i]);
+            }
+            
+            int idx = 0;
+
+            for (Queue<Integer> bucket : buckets){
+                while (!bucket.isEmpty()){
+                    arr[idx] = bucket.remove();
+                    idx++;
+                }
+            }
+
+            mod *= 10;
+        }
     }
 }
