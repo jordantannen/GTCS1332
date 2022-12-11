@@ -36,6 +36,27 @@ public class BST<T extends Comparable<? super T>> {
 
         return doesContain;
     }
+
+    public T get(T data) {
+        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        return getHelper(data, root);
+    }
+
+    private T getHelper(T data, BSTNode<T> curr){
+        if (curr == null)
+            throw new NoSuchElementException();
+
+        if (curr.getData().equals(data))
+            return curr.getData();
+
+        if (data.compareTo(curr.getData()) < 0)
+            return getHelper(data, curr.getLeft());
+        else if (data.compareTo(curr.getData()) > 0)
+            return getHelper(data, curr.getRight());
+
+        return null;
+
+    }
     /*
      * Do not add a constructor.
      */

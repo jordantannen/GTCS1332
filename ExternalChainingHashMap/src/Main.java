@@ -27,8 +27,14 @@ public class Main {
         System.out.println(testMap.remove(14));
         System.out.println(Arrays.toString(testMap.getTable()));
 
-        System.out.println(testMap.remove(40));
+        System.out.println(testMap.remove(27));
         System.out.println(Arrays.toString(testMap.getTable()));
+
+        System.out.println(testMap.remove(1));
+        System.out.println(Arrays.toString(testMap.getTable()));
+
+//        System.out.println(testMap.remove(40));
+//        System.out.println(Arrays.toString(testMap.getTable()));
 
 //        System.out.println();
 //

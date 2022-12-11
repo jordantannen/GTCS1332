@@ -9,3 +9,4 @@ Projects for Georgia Tech's Data Structures and Algorithms Course
 - Binary Search Tree
 - Min Heap
 - External Chaining HashMap
+- Iterative Sorts

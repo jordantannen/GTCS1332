@@ -39,6 +39,49 @@ public class Sorting {
      */
     public static <T> void mergeSort(T[] arr, Comparator<T> comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        if (arr.length > 1) {
+            T[] left = (T[]) new Object[arr.length / 2];
+            T[] right = (T[]) new Object[arr.length - left.length];
+
+            for (int i = 0; i < left.length; i++){
+                left[i] = arr[i];
+            }
+
+            for (int i = 0; i < right.length; i++){
+                right[i] = arr[i + left.length];
+            }
+
+            mergeSort(left, comparator);
+            mergeSort(right, comparator);
+            merge(arr, left, right, comparator);
+
+        }
+    }
+
+    public static <T> void merge(T[] arr, T[] left, T[] right, Comparator<T> comparator) {
+        int i = 0;
+        int j = 0;
+
+        while (i != left.length && j != right.length) {
+            if (comparator.compare(left[i], right[j]) <= 0 ) {
+                arr[i + j] = left[i];
+                i++;
+            }
+            else {
+                arr[i + j] = right[j];
+                j++;
+            }
+        }
+
+        while (i < left.length) {
+            arr[i + j] = left[i];
+            i++;
+        }
+
+        while (j < right.length){
+            arr[i + j] = right[j];
+            j++;
+        }
     }
 
     /**

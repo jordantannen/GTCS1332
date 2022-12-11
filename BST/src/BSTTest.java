@@ -30,16 +30,16 @@ class BSTTest {
          */
     }
 
-    @org.junit.jupiter.api.Test
-    void add() {
-        ArrayList<Integer> testList = new ArrayList<>();
-        Collections.addAll(testList, 15, 10, 8, 20);
-        testBST.add(15);
-        testBST.add(10);
-        testBST.add(20);
-        testBST.add(8);
-        assertEquals(testList, testBST.preorder(testBST.getRoot()));
-    }
+//    @org.junit.jupiter.api.Test
+//    void add() {
+//        ArrayList<Integer> testList = new ArrayList<>();
+//        Collections.addAll(testList, 15, 10, 8, 20);
+//        testBST.add(15);
+//        testBST.add(10);
+//        testBST.add(20);
+//        testBST.add(8);
+//        assertEquals(testList, testBST.preorder(testBST.getRoot()));
+//    }
 
     @org.junit.jupiter.api.Test
     void remove() {
