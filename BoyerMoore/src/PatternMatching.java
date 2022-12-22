@@ -59,7 +59,7 @@ public class PatternMatching {
         int m = pattern.length();
         HashMap<Character, Integer> last = new HashMap<>();
 
-        for (int i = 0; i < m - 1; i++) {
+        for (int i = 0; i < m; i++) {
             last.put(pattern.charAt(i), i);
         }
 
