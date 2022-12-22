@@ -26,6 +26,7 @@ public class PatternMatching {
      */
     public static List<Integer> boyerMoore(CharSequence pattern, CharSequence text, CharacterComparator comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        return null;
     }
 
     /**
@@ -59,7 +60,7 @@ public class PatternMatching {
         HashMap<Character, Integer> last = new HashMap<>();
 
         for (int i = 0; i < m - 1; i++) {
-            last.put(pattern[i], i);
+            last.put(pattern.charAt(i), i);
         }
 
         return last;
