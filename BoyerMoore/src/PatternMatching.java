@@ -37,11 +37,13 @@ public class PatternMatching {
                 j--;
             }
 
-            if (j == -1)
+            if (j == -1) {
                 startIndices.add(i);
+                i++;
+            }
 
             else {
-                int shift = last.get(text.charAt(i + j));
+                int shift = last.getOrDefault(text.charAt(i + j), -1);
 
                 if (shift < j)
                     i = i + j - shift;
