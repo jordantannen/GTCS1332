@@ -33,7 +33,7 @@ public class PatternMatching {
         while (i <= text.length() - pattern.length()) {
             int j = pattern.length() - 1;
 
-            while (j >= 0 && text.charAt(i + j) == pattern.charAt(j)) {
+            while (j >= 0 && comparator.compare(text.charAt(i + j), pattern.charAt(j)) == 0) {
                 j--;
             }
 
