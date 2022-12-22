@@ -26,7 +26,30 @@ public class PatternMatching {
      */
     public static List<Integer> boyerMoore(CharSequence pattern, CharSequence text, CharacterComparator comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        return null;
+        Map<Character, Integer> last = buildLastTable(pattern);
+        LinkedList<Integer> startIndices = new LinkedList<>();
+        int i = 0;
+
+        while (i <= text.length() - pattern.length()) {
+            int j = pattern.length() - 1;
+
+            while (j >= 0 && text.charAt(i + j) == pattern.charAt(j)) {
+                j--;
+            }
+
+            if (j == -1)
+                startIndices.add(i);
+
+            else {
+                int shift = last.get(text.charAt(i + j));
+
+                if (shift < j)
+                    i = i + j - shift;
+                else
+                    i++;
+            }
+        }
+        return startIndices;
     }
 
     /**
