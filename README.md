@@ -10,3 +10,5 @@ Projects for Georgia Tech's Data Structures and Algorithms Course
 - Min Heap
 - External Chaining HashMap
 - Iterative Sorts
+- Divide and Conquer Sorts
+- Boyer-Moore
