@@ -1,11 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Your implementation of various graph traversal algorithms.
@@ -40,7 +33,29 @@ public class GraphAlgorithms {
      */
     public static <T> List<Vertex<T>> bfs(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        Set<Vertex<T>> visited = new HashSet<>();
+        Queue<Vertex<T>> queue = new LinkedList<>();
+        List<Vertex<T>> result = new ArrayList<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            Vertex<T> temp = queue.remove();
+            result.add(temp);
+            for (VertexDistance<T> distance : graph.getAdjList().get(temp)) {
+                if (!visited.contains(distance.getVertex())) {
+                    visited.add(distance.getVertex());
+                    queue.add(distance.getVertex());
+                }
+            }
+        }
+        return result;
+
     }
+
+
 
     /**
      * Performs a depth first search (dfs) on the input graph, starting at
@@ -72,5 +87,22 @@ public class GraphAlgorithms {
      */
     public static <T> List<Vertex<T>> dfs(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        Set<Vertex<T>> visited = new HashSet<>();
+        List<Vertex<T>> results = new ArrayList<>();
+
+        dfsHelper(graph, start, visited, results);
+        return results;
+    }
+
+    private static <T> void dfsHelper(Graph<T> graph, Vertex<T> vertex, Set<Vertex<T>> visited, List<Vertex<T>> results) {
+        results.add(vertex);
+        visited.add(vertex);
+
+        for (VertexDistance<T> distance : graph.getAdjList().get(vertex)) {
+            if (!visited.contains(distance.getVertex())) {
+                dfsHelper(graph, distance.getVertex(), visited, results);
+            }
+        }
     }
 }
