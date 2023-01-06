@@ -48,5 +48,34 @@ public class GraphAlgorithms {
      */
     public static <T> Set<Edge<T>> prims(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        Set<Vertex<T>> visited = new HashSet<>();
+        Set<Edge<T>> MST = new HashSet<>();
+        PriorityQueue<Edge<T>> PQ = new PriorityQueue<>(graph.getEdges());
+
+//        for (Edge<T> edge : graph.getEdges()) {
+//            PQ.add(edge);
+//        }
+
+        visited.add(start);
+
+        while (!PQ.isEmpty() && visited.size() != graph.getVertices().size() - 1) {
+            Edge<T> temp = PQ.remove();
+
+            if (!visited.contains(temp.getV())) {
+                visited.add(temp.getV());
+                MST.add(temp);
+                for (Edge<T> edge : graph.getEdges()) {
+                    if (!visited.contains(edge.getV())) {
+                        PQ.add(edge);
+                    }
+                }
+            }
+        }
+
+        if (MST.size() < graph.getVertices().size() - 1) {
+            return null;
+        }
+        return MST;
+
     }
 }
