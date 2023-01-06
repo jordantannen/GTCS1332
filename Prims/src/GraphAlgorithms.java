@@ -53,7 +53,6 @@ public class GraphAlgorithms {
         PriorityQueue<Edge<T>> PQ = new PriorityQueue<>();
 
         for (Edge<T> edge : graph.getEdges()) {
-//            System.out.println(edge.getV());
             if (edge.getU().equals(start)){
                 PQ.add(edge);
             }
@@ -78,7 +77,7 @@ public class GraphAlgorithms {
             }
         }
 
-        if (MST.size() < graph.getVertices().size() - 1) {
+        if (MST.size() / 2 < graph.getVertices().size() - 1) {
             return null;
         }
         return MST;
