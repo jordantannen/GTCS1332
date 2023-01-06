@@ -12,3 +12,5 @@ Projects for Georgia Tech's Data Structures and Algorithms Course
 - Iterative Sorts
 - Divide and Conquer Sorts
 - Boyer-Moore
+- BFS, DFS
+- Prim's Algorithm
