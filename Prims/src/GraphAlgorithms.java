@@ -50,11 +50,13 @@ public class GraphAlgorithms {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         Set<Vertex<T>> visited = new HashSet<>();
         Set<Edge<T>> MST = new HashSet<>();
-        PriorityQueue<Edge<T>> PQ = new PriorityQueue<>(graph.getEdges());
+        PriorityQueue<Edge<T>> PQ = new PriorityQueue<>();
 
-//        for (Edge<T> edge : graph.getEdges()) {
-//            PQ.add(edge);
-//        }
+        for (Edge<T> edge : graph.getEdges()) {
+            if (edge.getV().equals(start)){
+                PQ.add(edge);
+            }
+        }
 
         visited.add(start);
 
@@ -65,7 +67,7 @@ public class GraphAlgorithms {
                 visited.add(temp.getV());
                 MST.add(temp);
                 for (Edge<T> edge : graph.getEdges()) {
-                    if (!visited.contains(edge.getV())) {
+                    if (edge.getU().equals(temp.getV())) {
                         PQ.add(edge);
                     }
                 }
