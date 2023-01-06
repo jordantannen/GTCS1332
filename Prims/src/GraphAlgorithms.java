@@ -66,6 +66,7 @@ public class GraphAlgorithms {
             if (!visited.contains(temp.getV())) {
                 visited.add(temp.getV());
                 MST.add(temp);
+                MST.add(new Edge<>(temp.getV(), temp.getU(), temp.getWeight()));
                 for (Edge<T> edge : graph.getEdges()) {
                     if (edge.getU().equals(temp.getV())) {
                         PQ.add(edge);
