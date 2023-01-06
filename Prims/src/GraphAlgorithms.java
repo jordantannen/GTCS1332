@@ -53,22 +53,25 @@ public class GraphAlgorithms {
         PriorityQueue<Edge<T>> PQ = new PriorityQueue<>();
 
         for (Edge<T> edge : graph.getEdges()) {
-            if (edge.getV().equals(start)){
+//            System.out.println(edge.getV());
+            if (edge.getU().equals(start)){
                 PQ.add(edge);
             }
         }
 
         visited.add(start);
 
-        while (!PQ.isEmpty() && visited.size() != graph.getVertices().size() - 1) {
+        while (!PQ.isEmpty() && visited.size() != graph.getVertices().size()) {
             Edge<T> temp = PQ.remove();
 
             if (!visited.contains(temp.getV())) {
                 visited.add(temp.getV());
+
                 MST.add(temp);
                 MST.add(new Edge<>(temp.getV(), temp.getU(), temp.getWeight()));
+
                 for (Edge<T> edge : graph.getEdges()) {
-                    if (edge.getU().equals(temp.getV())) {
+                    if (edge.getU().equals(temp.getV()) && !visited.contains(edge.getV())) {
                         PQ.add(edge);
                     }
                 }
